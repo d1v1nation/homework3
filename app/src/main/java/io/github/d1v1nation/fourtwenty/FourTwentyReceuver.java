@@ -16,10 +16,10 @@ import java.util.Objects;
  *         30.11.16 of fourtwenty | io.github.d1v1nation.fourtwenty
  */
 
-public class MemeRecv extends BroadcastReceiver {
+public class FourTwentyReceuver extends BroadcastReceiver {
     private final FourTwentyService callback;
 
-    public MemeRecv(FourTwentyService callback) {
+    public FourTwentyReceuver(FourTwentyService callback) {
         super();
         this.callback = callback;
     }
