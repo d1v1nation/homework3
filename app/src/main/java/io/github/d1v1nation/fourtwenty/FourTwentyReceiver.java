@@ -16,10 +16,10 @@ import java.util.Objects;
  *         30.11.16 of fourtwenty | io.github.d1v1nation.fourtwenty
  */
 
-public class FourTwentyReceuver extends BroadcastReceiver {
+public class FourTwentyReceiver extends BroadcastReceiver {
     private final FourTwentyService callback;
 
-    public FourTwentyReceuver(FourTwentyService callback) {
+    public FourTwentyReceiver(FourTwentyService callback) {
         super();
         this.callback = callback;
     }
