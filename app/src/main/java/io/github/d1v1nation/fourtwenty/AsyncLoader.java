@@ -69,7 +69,7 @@ public class AsyncLoader extends AsyncTask<Bundle, Unit, FourTwentyService.State
     protected void onPostExecute(FourTwentyService.State st) {
         super.onPostExecute(st);
 
-        callback.setImageState(st);
+        callback.setImageState(FourTwentyService.State.IT_IS);
         Log.d(TAG, "onPostExecute: fetch complete");
     }
 }

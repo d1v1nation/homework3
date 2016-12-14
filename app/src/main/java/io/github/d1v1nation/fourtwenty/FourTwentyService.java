@@ -46,23 +46,8 @@ public class FourTwentyService extends Service {
 
         Log.d(TAG, "onStartCommand: Service started.");
 
-        File ftjpeg = new File(getApplicationContext().getFilesDir(), "420.jpg");
-        try {
-            if (ftjpeg.createNewFile()) {
-                Bundle b = new Bundle();
-                b.putSerializable("file", ftjpeg);
-                URL value = new URL(link);
-                Log.d(TAG, "onStartCommand: " + value.toString());
-                b.putSerializable("url", value);
 
-                AsyncLoader al = new AsyncLoader(this);
-                al.execute(b);
-            }
-        } catch (Exception e){
-            Log.e(TAG, "onStartCommand: something has gone horribly wrong with the filesystem.", e);
-        }
-
-        bc = new MemeRecv(this);
+        bc = new FourTwentyReceiver(this);
         registerReceiver(bc, new IntentFilter(INTENT_TYPE));
         return START_STICKY;
     }
@@ -84,6 +69,29 @@ public class FourTwentyService extends Service {
 
     void setTimeState(State st) {
         timeState = st;
+
+        if (st == State.IT_IS) {
+            File ftjpeg = new File(getApplicationContext().getFilesDir(), "420.jpg");
+            try {
+                if (ftjpeg.createNewFile()) {
+                    Bundle b = new Bundle();
+                    b.putSerializable("file", ftjpeg);
+                    URL value = new URL(link);
+                    Log.d(TAG, "onStartCommand: " + value.toString());
+                    b.putSerializable("url", value);
+
+                    AsyncLoader al = new AsyncLoader(this);
+                    al.execute(b);
+                } else {
+                    setImageState(State.IT_IS);
+                }
+            } catch (Exception e){
+                Log.e(TAG, "onStartCommand: something has gone horribly wrong with the filesystem and stuff.", e);
+                setTimeState(State.IT_ISNT);
+                setImageState(State.IT_ISNT);
+            }
+        }
+
         handleStates();
     }
 

@@ -24,14 +24,9 @@
         </activity>
 
         <receiver
-            android:name=".MemeRecv"
+            android:name=".FourTwentyReceiver"
             android:enabled="true"
             android:exported="true" />
-
-        <service
-            android:name=".FickYou"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>
